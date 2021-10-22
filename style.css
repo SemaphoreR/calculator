@@ -1,0 +1,109 @@
+html,body {
+  background: url(https://c4.wallpaperflare.com/wallpaper/378/119/800/glare-circles-light-bright-wallpaper-preview.jpg) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;}
+
+.calculator {
+    height: 550px;
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto 0 auto;
+    background-color: #6e72fc;
+    background-image: linear-gradient(315deg, #6e72fc 0%, #ad1deb 74%);
+    border: 5px inset purple;
+    border-radius: 10px;
+
+}
+
+@media only screen and (max-width: 400px) {
+    .calculator {
+        height: 400px;
+        width: 280px;
+        border: 2px inset purple;
+    }
+  }
+
+#output {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-end;
+    height: 90px;
+    margin: 10px auto 10px auto;
+    width: 375px;
+    font-family: 'Roboto Mono', monospace;
+    color: #ffd453;
+    background-color:rgb(94, 0, 156);
+    border-radius: 15px;
+}
+
+@media only screen and (max-width: 400px) {
+    #output {
+      height: 70px;
+      width: 250px;
+    }
+  }
+
+h1 {
+    display: flex;  
+    font-size: 28px;
+    margin: 0 10px 0 0;
+    flex-grow: 1;
+}
+
+h2 {
+    display: flex;
+    font-size: 14px;
+    margin: 5px 10px 0 0;
+    flex-grow: 1;
+}
+
+@media only screen and (max-width: 400px) {
+    h1 {
+      font-size: 24px;
+    }
+  }
+
+#buttons {
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+    width: 100%;
+    flex: 1 1 auto;
+    justify-content: center;
+    margin: 0px 0 10px 0;
+    padding: 10px 0 0 0;
+    border-top: 5px inset purple;
+}
+
+@media only screen and (max-width: 400px) {
+    #buttons {
+        border-top: 2px inset purple;
+    }
+  }
+
+.wrapper {
+    display:flex;
+    flex-direction: column;
+}
+
+button {
+    width: 75px;
+    flex-grow: 1;
+    color: rgb(35, 0, 58);
+    background-color: #f39f86;
+    background-image: linear-gradient(315deg, #f39f86 0%, #ffd453 74%);
+    font-family: 'Roboto Mono', monospace;
+    font-size: 3vh;
+    font-weight: bold;
+}
+
+@media only screen and (max-width: 400px) {
+    button {
+      width: 50px;
+      font-size: 2vh;
+    }
+  }

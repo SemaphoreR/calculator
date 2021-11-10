@@ -47,6 +47,10 @@ html,body {
     }
   }
 
+#history {
+  display: inline-flex
+}
+
 h1 {
     display: flex;  
     font-size: 28px;
@@ -73,15 +77,11 @@ h2 {
     }
   }
 #buttons {
-    display: flex;
-    flex-direction: row;
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
     height: 100%;
-    width: 100%;
-    flex: 1 1 auto;
-    justify-content: center;
-    margin: 0px 0 10px 0;
-    padding: 10px 0 0 0;
     border-top: 5px inset purple;
+    padding: 20px;
 }
 
 @media only screen and (max-width: 400px) {
@@ -90,13 +90,7 @@ h2 {
     }
   }
 
-.wrapper {
-    display:flex;
-    flex-direction: column;
-}
-
 button {
-    width: 75px;
     flex-grow: 1;
     color: rgb(35, 0, 58);
     background-color: #f39f86;
@@ -104,11 +98,11 @@ button {
     font-family: 'Roboto Mono', monospace;
     font-size: 3vh;
     font-weight: bold;
+    border: 3px solid rgb(29, 0, 29);
+    border-radius: 10px;
 }
 
-@media only screen and (max-width: 400px) {
-    button {
-      width: 50px;
-      font-size: 2vh;
-    }
-  }
+button:active {
+  box-shadow: 0 3px  rgb(29, 0, 29);
+  transform: translateY(2px);
+}

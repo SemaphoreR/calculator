@@ -1,26 +1,94 @@
-let firstNumber = null
-    operator = null
-    secondNumber = null
-    activeNumber = ""
+const firstNumber = document.getElementById("firstNumber")
+const operator = document.getElementById("activeOperator")
+const secondNumber = document.getElementById("secondNumber")
+const activeNumber = document.getElementById("activeNumber")
 
-let equation = document.getElementById("equation").innerHTML
-    activeNumber = document.getElementById("theActiveNumber").innerHTML
+function oops() {
+    activeNumber.innerHTML = activeNumber.innerHTML.slice(0, -1);
+}
 
 function clear(){
-    document.getElementById("equation").innerHTML = ""
-    document.getElementById("theActiveNumber").innerHTML = ""
-};
+    firstNumber.innerHTML = ""
+    operator.innerHTML = ""
+    secondNumber.innerHTML = ""
+    activeNumber.innerHTML = ""
+}
 
-function backspace() {
-    document.getElementById("theActiveNumber").innerHTML = document.getElementById("theActiveNumber").innerHTML.toString().slice(0, -1);
+function numberPress(value){
+    if (activeNumber.innerHTML.length < 20) {
+    activeNumber.innerHTML += value;
+}}
+
+function changeOperator(value) {
+switch (value) {
+    case "plus":
+    case "+":
+        operator.innerHTML = "+"
+        break;
+    case "minus":
+    case "-":
+        operator.innerHTML = "-"
+        break;
+    case "multiply":
+    case "*":
+    case "x":
+        operator.innerHTML = "*"
+        break;
+    case "divide":
+    case "%":
+    case "/":
+        operator.innerHTML = "%"
+        break;
+    case "toPower":
+    case "^":
+        operator.innerHTML = "^"
+        break;
+    case "default":
+        break;
+}}
+
+function operatorPress(value){
+    if ((operator.innerHTML == "") && (activeNumber.innerHTML != "")) {
+        changeOperator(value);
+        firstNumber.innerHTML = activeNumber.innerHTML;
+        activeNumber.innerHTML = "";
+    } else if ((operator.innerHTML != "") && (firstNumber.innerHTML != "") && (secondNumber.innerHTML != "")) {
+        alert("This should work...") //use this to redirect to function that handles the calculations
+    }
 }
 
 
+function addNumbers(a, b){
+    activeNumber.innerHTML = parseFloat(a) + parseFloat(b);
+}
+
+function subtractNumbers(a, b){
+    activeNumber.innerHTML = parseFloat(a) - parseFloat(b);
+}
+
+function multiplyNumbers(a, b){
+    activeNumber.innerHTML = parseFloat(a) * parseFloat(b);
+}
+
+function divideNumbers(a, b){
+    activeNumber.innerHTML = parseFloat(a) / parseFloat(b);
+}
+
+function addDecimal(){
+    if(activeNumber.innerHTML.indexOf(".") === -1){
+        if (activeNumber.innerHTML.length < 20){ 
+            activeNumber.innerHTML += ".";
+ }}}
+ 
+ function makePosOrNeg(){
+     activeNumber.innerHTML = parseFloat(activeNumber.innerHTML) * -1;
+ }
+
+function findPower(a, b){
+    activeNumber.innerHTML = Math.pow(parseFloat(a), parseFloat(b));
+}
 
 /*
-Rules for decimals/length of string:
-
-
 firstNumber changes when:
     Operator/= pressed and activeNumber True
 
@@ -39,75 +107,12 @@ activeNumber changes when:
 equalSign changes when:
     secondNumber changes
 
-function delButton(){
-    remove last character from activeNumber
-}
-*/
-function numberPress(number){
-    if (document.getElementById("theActiveNumber").innerHTML.length < 20) {
-    document.getElementById("theActiveNumber").innerHTML += number;
-    }
 }
 
-function addDecimal(){
-   
-}}
-/*
 
-
-function addNumbers()
-    if firstNumber = ""
-        if currentNumber = ""
-            ERROR
-        else firstNumber = currentNumber
-            operator = plus
-    else if firstNumber != ""
-        if operator = plus
-            if currentNumber != ""
-                secondNumber = currentNumber
-
-        else   
-
-
-function subtractNumbers()
-
-function multiplyNumbers()
-
-function divideNumbers()
-
-function findFactorial()
-
-function addDecimal()
-
-function makePosOrNeg()
-
-
-function calculate() {
-    if firstNumber, operator, and activeNumber != "" && secondNumber = ""
-        switch operator()
-        case number:
-            numberPress();
-            break;
-        case equals:
-            calculate();
-            break;
-        case plus:
-            addNumbers();
-            break;
-        case minus:
-            subtractNumbers();
-            break;
-        case multiply:
-            multiplyNumbers();
-            break;
-        case divide:
-            divideNumbers();
-            break;
-        case default:
-            return;
-            break;
-    }
 */
+
+//button support
 const wrapper = document.getElementById('buttons');
 
 wrapper.addEventListener('click', (event) => {
@@ -129,20 +134,17 @@ wrapper.addEventListener('click', (event) => {
         numberPress(event.target.id);
         break;
     case "plus":
-        addNumbers();
-        break;
     case "minus":
-        subtractNumbers();
     case "multiply":
-        multiplyNumbers();
     case "divide":
-        divideNumbers();
+    case "toPower":
+        operatorPress(event.target.id);
+        break;
     case "float":
         addDecimal();
         break;
-    case "toPower":
-        findPower();
-        break;
+    case "plusOrMinus":
+        makePosOrNeg();
     case "equals":
         calculate;
         break;
@@ -150,7 +152,7 @@ wrapper.addEventListener('click', (event) => {
         clear();
         break;
     case "delete":
-        backspace();
+        oops();
         break;
     case "default":
         return;
@@ -158,32 +160,43 @@ wrapper.addEventListener('click', (event) => {
   }
 })
 
-/*
+//keyboard support
 document.addEventListener('keydown', (event) => {
-    if (typeof event.key === "number") {
-        numberPress(event.key);
-} else if (event.key === "+") {
-        addNumbers();
-} else if (event.key === "-") {
-        subtractNumbers();
-} else if (event.key === "*" || "x") {
-        multiplyNumbers();
-} else if (event.key === "%" || "/") {
-        divideNumbers();
-} else if (event.key === ".") {
-        addDecimal();
-} else if (event.key === "^") {
-        findPower();
-} else if (event.key === "=" || "Enter") {
-      calculate();
-}else return;})
-
-*/
-
-document.addEventListener('keydown', (event) => {
-    if (event.key === 1) {
-        numberPress(event.key);
-    } else if (event.key === 2) {
-        numberPress(event.key);
-    } else return;
-})
+    switch (event.key) {
+        case "0":
+        case "1":
+        case "2": 
+        case "3":
+        case "4":
+        case "5":
+        case "6":
+        case "7":
+        case "8":
+        case "9":
+            numberPress(event.key);
+            break;
+        case "+":
+        case "-":
+        case "*":
+        case "x":
+        case "%":
+        case "/":
+        case "^":
+            operatorPress(event.key);
+            break;
+        case ".":
+            addDecimal();
+            break;
+        case "=":
+        case "Enter":
+            calculate();
+            break;
+        case "Delete":
+            clear();
+            break;
+        case "Backspace":
+            oops();
+            break;
+        case "default":
+            break;
+    }})

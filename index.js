@@ -3,6 +3,36 @@ const operator = document.getElementById("activeOperator")
 const secondNumber = document.getElementById("secondNumber")
 const activeNumber = document.getElementById("activeNumber")
 
+function addNumbers(a, b){
+    activeNumber.innerHTML = parseFloat(a) + parseFloat(b);
+}
+
+function subtractNumbers(a, b){
+    activeNumber.innerHTML = parseFloat(a) - parseFloat(b);
+}
+
+function multiplyNumbers(a, b){
+    activeNumber.innerHTML = parseFloat(a) * parseFloat(b);
+}
+
+function divideNumbers(a, b){
+    activeNumber.innerHTML = parseFloat(a) / parseFloat(b);
+}
+
+function addDecimal(){
+    if(activeNumber.innerHTML.indexOf(".") === -1){
+        if (activeNumber.innerHTML.length < 20){ 
+            activeNumber.innerHTML += ".";
+ }}}
+ 
+ function makePosOrNeg(){
+     activeNumber.innerHTML = parseFloat(activeNumber.innerHTML) * -1;
+ }
+
+function findPower(a, b){
+    activeNumber.innerHTML = Math.pow(parseFloat(a), parseFloat(b));
+}
+
 function oops() {
     activeNumber.innerHTML = activeNumber.innerHTML.slice(0, -1);
 }
@@ -18,6 +48,7 @@ function numberPress(value){
     if (activeNumber.innerHTML.length < 20) {
     activeNumber.innerHTML += value;
 }}
+
 
 function changeOperator(value) {
 switch (value) {
@@ -52,65 +83,41 @@ function operatorPress(value){
         changeOperator(value);
         firstNumber.innerHTML = activeNumber.innerHTML;
         activeNumber.innerHTML = "";
-    } else if ((operator.innerHTML != "") && (firstNumber.innerHTML != "") && (secondNumber.innerHTML != "")) {
-        alert("This should work...") //use this to redirect to function that handles the calculations
+    } else if ((operator.innerHTML != "") && (firstNumber.innerHTML != "") && (secondNumber.innerHTML != "") && (activeNumber.innerHTML != "")) {
+        firstNumber.innerHTML = activeNumber.innerHTML;
+        secondNumber.innerHTML = "";
+        activeNumber.innerHTML = "";
+        changeOperator(value);
+    } else if ((operator.innerHTML != "") && (firstNumber.innerHTML != "") && (secondNumber.innerHTML == "") && (activeNumber.innerHTML != "")) {
+        calculate();
+        changeOperator(value);
     }
 }
 
-
-function addNumbers(a, b){
-    activeNumber.innerHTML = parseFloat(a) + parseFloat(b);
+function calculate(){
+    if ((firstNumber.innerHTML != "")  && (operator.innerHTML != "")  && (activeNumber.innerHTML != "") && (secondNumber.innerHTML == "")) {
+        secondNumber.innerHTML = activeNumber.innerHTML;
+        switch (operator.innerHTML) {
+            case "+":
+                addNumbers(firstNumber.innerHTML, secondNumber.innerHTML);
+                break;
+            case "-":
+                subtractNumbers(firstNumber.innerHTML, secondNumber.innerHTML);
+                break;
+            case "*":
+                multiplyNumbers(firstNumber.innerHTML, secondNumber.innerHTML);
+                break;
+            case "%":
+                divideNumbers(firstNumber.innerHTML, secondNumber.innerHTML);
+                break;
+            case "^":
+                findPower(firstNumber.innerHTML, secondNumber.innerHTML);
+                break;
+            case "default":
+                break;
+        }
+    }
 }
-
-function subtractNumbers(a, b){
-    activeNumber.innerHTML = parseFloat(a) - parseFloat(b);
-}
-
-function multiplyNumbers(a, b){
-    activeNumber.innerHTML = parseFloat(a) * parseFloat(b);
-}
-
-function divideNumbers(a, b){
-    activeNumber.innerHTML = parseFloat(a) / parseFloat(b);
-}
-
-function addDecimal(){
-    if(activeNumber.innerHTML.indexOf(".") === -1){
-        if (activeNumber.innerHTML.length < 20){ 
-            activeNumber.innerHTML += ".";
- }}}
- 
- function makePosOrNeg(){
-     activeNumber.innerHTML = parseFloat(activeNumber.innerHTML) * -1;
- }
-
-function findPower(a, b){
-    activeNumber.innerHTML = Math.pow(parseFloat(a), parseFloat(b));
-}
-
-/*
-firstNumber changes when:
-    Operator/= pressed and activeNumber True
-
-operator changes when:
-    Operator/= pressed, activeNumber True, and operator False
-    Operator pressed, first/second True, operator True
-
-secondNumber changes when:
-    Operator/= pressed, firstNumber true, activeNumber True, and operator True
-    Operator pressed, secondNumber true
-
-activeNumber changes when: 
-    Number pressed
-    Operator/= pressed, firstNumber True, activeNumber True, and operator True
-
-equalSign changes when:
-    secondNumber changes
-
-}
-
-
-*/
 
 //button support
 const wrapper = document.getElementById('buttons');
@@ -146,7 +153,7 @@ wrapper.addEventListener('click', (event) => {
     case "plusOrMinus":
         makePosOrNeg();
     case "equals":
-        calculate;
+        calculate();
         break;
     case "clear":
         clear();

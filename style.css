@@ -61,7 +61,7 @@ h1 {
 h2 {
     display: flex;
     font-size: 14px;
-    margin: 5px 10px 0 0;
+    margin: 5px 6px 0 0;
     flex-grow: 1;
 }
 
@@ -73,7 +73,7 @@ h2 {
 
   @media only screen and (max-width: 400px) {
     h2 {
-      font-size: 12px;
+      font-size: 10px;
     }
   }
 #buttons {

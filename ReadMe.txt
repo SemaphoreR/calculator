@@ -1,1 +1,1 @@
-A fully functional calculator that adds, subtracts, multiplies, and divides.
+Calculator made with HTML, CSS, and JavaScript.

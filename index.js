@@ -21,7 +21,7 @@ function divideNumbers(a, b){
 
 function addDecimal(){
     if(activeNumber.innerHTML.indexOf(".") === -1){
-        if (activeNumber.innerHTML.length < 20){ 
+        if (activeNumber.innerHTML.length < 18){ 
             activeNumber.innerHTML += ".";
  }}}
  
@@ -45,7 +45,7 @@ function clear(){
 }
 
 function numberPress(value){
-    if (activeNumber.innerHTML.length < 20) {
+    if (activeNumber.innerHTML.length < 18) {
     activeNumber.innerHTML += value;
 }}
 
@@ -108,7 +108,9 @@ function calculate(){
                 multiplyNumbers(firstNumber.innerHTML, secondNumber.innerHTML);
                 break;
             case "%":
-                divideNumbers(firstNumber.innerHTML, secondNumber.innerHTML);
+                if (secondNumber.innerHTML == "0") {
+                    alert("universe.exe has crashed, nice going hero")
+                 } else divideNumbers(firstNumber.innerHTML, secondNumber.innerHTML);
                 break;
             case "^":
                 findPower(firstNumber.innerHTML, secondNumber.innerHTML);
